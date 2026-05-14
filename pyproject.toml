@@ -1,0 +1,51 @@
+# DEMO: pyproject.toml tells Python build tools how to package, install, and expose this project.
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# DEMO: PyPI project names often use hyphens, while Python imports use underscores.
+name = "dir-monitor-exellenteam"
+version = "0.1.0"
+description = "A small teaching package for monitoring directory changes."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    { name = "Exellenteam Python Class" }
+]
+license = "MIT"
+license-files = ["LICENSE"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: OS Independent",
+    "Topic :: Education",
+    "Topic :: System :: Filesystems",
+]
+keywords = ["teaching", "package", "directory-monitor", "pypi"]
+# DEMO: Runtime dependencies are installed automatically when users install this package.
+dependencies = [
+    "colorama>=0.4.6",
+    "humanize>=4.9",
+]
+
+[project.optional-dependencies]
+# DEMO: Optional dependencies keep runtime installs small while giving students test tools when needed.
+dev = ["pytest>=8"]
+
+[project.scripts]
+# DEMO: This creates a terminal command when the package is installed.
+dir-monitor-exellenteam = "dir_monitor_exellenteam.cli:main"
+
+[tool.setuptools.packages.find]
+# DEMO: The src layout keeps importable package code separate from examples and scripts.
+where = ["src"]
+
+[tool.pytest.ini_options]
+# DEMO: Pytest markers let students run one test layer at a time.
+testpaths = ["tests"]
+markers = [
+    "unit: fast tests for small pieces, often with mocks",
+    "integration: tests that combine package pieces with real filesystem behavior",
+    "system: tests that run the package like an outside user would",
+]

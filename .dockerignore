@@ -1,0 +1,12 @@
+# DEMO: .dockerignore keeps local virtualenvs and build artifacts out of Docker builds.
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+changes.log
+watched_demo/*
+!watched_demo/.gitkeep

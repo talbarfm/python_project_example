@@ -1,0 +1,14 @@
+.venv/
+.venv-local-dev-demo/
+.venv-compare/
+.venv-test/
+.pytest_cache/
+.mypy_cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+changes.log
+watched_demo/*
+!watched_demo/.gitkeep
