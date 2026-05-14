@@ -1,0 +1,8 @@
+#!/bin/sh
+'''exec' "/Users/talbar/git/package class example/.venv-talbar/bin/python" "$0" "$@"
+' '''
+import sys
+from dir_monitor_exellenteam.cli import main
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(main())

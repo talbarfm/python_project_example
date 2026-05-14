@@ -11,7 +11,7 @@ python3 -m venv .venv-compare
 source .venv-compare/bin/activate
 
 # DEMO: pip installs the local package into the virtualenv's site-packages directory.
-python -m pip install --upgrade pip
+python -m pip install --upgrade pip setuptools
 python -m pip install .
 
 # DEMO: These commands prove the package and its dependencies were installed in the virtualenv.

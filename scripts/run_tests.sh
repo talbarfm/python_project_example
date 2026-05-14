@@ -10,7 +10,7 @@ python3 -m venv .venv-test
 source .venv-test/bin/activate
 
 # DEMO: The [dev] extra comes from pyproject.toml and installs pytest.
-python -m pip install --upgrade pip
+python -m pip install --upgrade pip setuptools
 python -m pip install -e ".[dev]"
 
 # DEMO: Pytest markers let students run unit, integration, or system tests separately.

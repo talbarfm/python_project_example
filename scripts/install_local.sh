@@ -10,7 +10,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 
 # DEMO: Editable install means code changes are visible without reinstalling each time.
-python -m pip install --upgrade pip
+python -m pip install --upgrade pip setuptools
 python -m pip install -e .
 
 # DEMO: The installed console script comes from [project.scripts] in pyproject.toml.
