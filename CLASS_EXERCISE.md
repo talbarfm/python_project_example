@@ -33,6 +33,22 @@ Answer:
 
 Key idea: with `pip install -e .`, package metadata lives in the virtualenv, but the package code is imported from this repo's `src/` folder.
 
+## Part 2B: External Install Picker Script
+
+Run:
+
+```bash
+python scripts/install_picker_and_show_paths.py --mode local-dev
+```
+
+Answer:
+
+- Which virtualenv did the script create?
+- Where is the console command installed?
+- Which paths belong to this local package, and which paths belong to packages downloaded from PyPI?
+
+Key idea: an external script can create a virtualenv, install the package, and inspect the installed paths without being part of the import package itself.
+
 ## Part 3: Change Code and Observe Editable Behavior
 
 Activate the local virtualenv:
@@ -142,10 +158,23 @@ Run:
 
 ```bash
 source .venv/bin/activate
-dir-monitor-exellenteam ./watched_demo --timeout 2 --interval 0.5 --log-level DEBUG --log-file changes.log
+rm -f changes.log watched_demo/student-log-test.txt
+dir-monitor-exellenteam ./watched_demo --timeout 10 --interval 0.5 --log-level DEBUG --log-file changes.log
 ```
 
-While it runs, create or edit a file inside `watched_demo`.
+While it runs, create or edit a file inside `watched_demo`. For example, in a second terminal:
+
+```bash
+printf "student change\n" > watched_demo/student-log-test.txt
+```
+
+If you want a one-terminal version for practice, run this instead:
+
+```bash
+rm -f changes.log watched_demo/student-log-test.txt
+(sleep 1; printf "student change\n" > watched_demo/student-log-test.txt) &
+dir-monitor-exellenteam ./watched_demo --timeout 5 --interval 0.5 --log-level DEBUG --log-file changes.log
+```
 
 Then inspect:
 
@@ -244,6 +273,8 @@ Run:
 ```bash
 ./scripts/run_tests.sh tests/unit/test_monitor.py::test_monitor_directory_logs_events_from_mocked_iterator
 ```
+
+Expected result: this test still passes, because the fake event supplied by the mock changed too.
 
 Questions:
 
@@ -367,5 +398,5 @@ After restoring all temporary changes:
 Expected result:
 
 ```text
-31 passed
+32 passed
 ```

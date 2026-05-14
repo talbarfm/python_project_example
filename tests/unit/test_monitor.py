@@ -32,6 +32,14 @@ def test_change_event_formats_move() -> None:
 
 
 @pytest.mark.unit
+def test_change_event_formats_created_file() -> None:
+    # DEMO: This catches the simple formatting mistake students create in the debugging exercise.
+    event = ChangeEvent("created", path=Path("created.txt"))
+
+    assert event.to_log_line() == "CREATED  file: created.txt"
+
+
+@pytest.mark.unit
 def test_diff_snapshots_finds_created_modified_moved_and_deleted() -> None:
     before = {
         Path("modified.txt"): file_state(Path("modified.txt"), (1, 1), size=10, modified_ns=100),
